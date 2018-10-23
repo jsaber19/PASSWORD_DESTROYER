@@ -102,4 +102,8 @@ public class Logic {
         }
         return -1;
     }
+
+    public int getCount(){
+        return count;
+    }
 }
