@@ -7,12 +7,13 @@ public class Logic {
     private int method;
     private char[] characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()".toCharArray(); // https://stackoverflow.com/questions/17575840/better-way-to-generate-array-of-all-letters-in-the-alphabet
 
-    public Logic(){
+    public Logic(String password){
         Scanner kb = new Scanner(System.in);
         System.out.println("Type in a password you want to break");
         password = kb.nextLine();
         System.out.println("Type '1' if you want to break via brute force. Type '2' if you want to break via common passwords. Type '3' if you want to break by ");
         method = kb.nextInt(); // temp until we set up button events
+        this.password = password;
     }
 
     // http://prembharticodes.blogspot.com/2011/10/brute-force-algorithm-for-password.html
@@ -86,6 +87,24 @@ public class Logic {
             if (s.equals(password)){
                 return 1;
             }
+        }
+        return -1;
+    }
+
+    public int randomPasswords(){
+        while (count < 5000){
+            int length = (int)(Math.random()*40 + .5);
+            String guess = "";
+
+            for (int i = 0; i < length; i++){
+                guess+=characters[(int)(Math.random()*characters.length)];
+            }
+
+            count++;
+            if (guess.equals(password)) {
+                return 1;
+            }
+
         }
         return -1;
     }
