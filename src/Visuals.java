@@ -50,10 +50,10 @@ public class Visuals extends Application {
 
         stage.setScene(new Scene(root, 500, 500));
         stage.show();
-        submit.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        Button1.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent e){
                 String toGuess = password.getText();
-                System.out.print(toGuess);
+                Logic(toGuess);
             }
         });
 
