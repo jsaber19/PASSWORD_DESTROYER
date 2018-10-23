@@ -4,15 +4,9 @@ import java.util.Scanner;
 public class Logic {
     private String password;
     public int count = 0;
-    private int method;
     private char[] characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()".toCharArray(); // https://stackoverflow.com/questions/17575840/better-way-to-generate-array-of-all-letters-in-the-alphabet
 
     public Logic(String password){
-        Scanner kb = new Scanner(System.in);
-        System.out.println("Type in a password you want to break");
-        password = kb.nextLine();
-        System.out.println("Type '1' if you want to break via brute force. Type '2' if you want to break via common passwords. Type '3' if you want to break by ");
-        method = kb.nextInt(); // temp until we set up button events
         this.password = password;
     }
 
