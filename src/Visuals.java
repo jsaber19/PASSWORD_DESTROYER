@@ -53,7 +53,8 @@ public class Visuals extends Application {
         Button1.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent e){
                 String toGuess = password.getText();
-                Logic(toGuess);
+                Logic password = new Logic(toGuess);
+                password.bruteForce();
             }
         });
 
