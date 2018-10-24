@@ -14,7 +14,8 @@ public class Logic {
     public int bruteForce(){
 
         // initialize char array for guesses
-        char[] guess = new char[0];
+        char[] guess = new char[1];
+
         Arrays.fill(guess, characters[0]);
 
         // make attempt to represent guess as a String
@@ -31,6 +32,8 @@ public class Logic {
             attempt = "";
             for (char c : guess) { attempt += c; }
             count++; // means the if branch wasn't activated but still need to track each attempt
+            System.out.println(count);
+            System.out.println(" " + attempt);
 
 
             /**
@@ -59,7 +62,7 @@ public class Logic {
 
                 // if you haven't gone through every available char for the current index
                 else {
-                    guess[index] = characters[Arrays.binarySearch(characters, guess[index]) + 1]; // try the next char at the current index
+                    guess[index] = characters[Arrays.asList(characters).indexOf(guess[index]) + 1]; // try the next char at the current index
                     break; // try the password
                 }
 

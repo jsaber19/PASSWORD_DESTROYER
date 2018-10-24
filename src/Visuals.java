@@ -54,7 +54,7 @@ public class Visuals extends Application {
             public void handle(MouseEvent e){
                 String toGuess = password.getText();
                 Logic password = new Logic(toGuess);
-                password.bruteForce();
+                System.out.print(password.bruteForce());
             }
         });
 
