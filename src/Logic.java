@@ -8,6 +8,7 @@ public class Logic {
 
     public Logic(String password){
         this.password = password;
+        Arrays.sort(characters);
     }
 
     // http://prembharticodes.blogspot.com/2011/10/brute-force-algorithm-for-password.html
@@ -62,7 +63,7 @@ public class Logic {
 
                 // if you haven't gone through every available char for the current index
                 else {
-                    guess[index] = characters[Arrays.asList(characters).indexOf(guess[index]) + 1]; // try the next char at the current index
+                    guess[index] = characters[Arrays.binarySearch(characters, guess[index]) + 1]; // try the next char at the current index
                     break; // try the password
                 }
 
