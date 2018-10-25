@@ -33,8 +33,8 @@ public class Logic {
             attempt = "";
             for (char c : guess) { attempt += c; }
             count++; // means the if branch wasn't activated but still need to track each attempt
-            System.out.println(count);
-            System.out.println(" " + attempt);
+
+            System.out.println(attempt);
 
 
             /**
