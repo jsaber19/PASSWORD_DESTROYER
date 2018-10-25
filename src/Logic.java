@@ -1,3 +1,6 @@
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -104,6 +107,42 @@ public class Logic {
             }
 
         }
+        return -1;
+    }
+
+    public int commonCharacters(){
+        String[] commonWords = new String[1201];
+
+        Path currentRelativePath = Paths.get(""); // gets local path
+        String relPath = currentRelativePath.toAbsolutePath().toString() + "/src/"; // adds the part of the file path at the end
+        File wordsText = new File("file://" + relPath + "1201_words.txt");
+
+        Scanner words = null;
+
+        try{
+            words = new Scanner(wordsText);
+        }
+        catch (Exception o){
+            System.out.println("error");
+        }
+
+        words.useDelimiter(",");
+
+        for (int i = 0; i < 1201; i++){
+            String s = words.next();
+            if (s.contains("s")){ s.replaceAll("s", "$"); }
+            if (s.contains("a")){ s.replaceAll("a", "@"); }
+            if (s.contains("i")){ s.replaceAll("i", "1"); }
+            if (s.contains("o")){ s.replaceAll("o", "0"); }
+            if (s.contains("e")){ s.replaceAll("e", "3"); }
+            commonWords[i] = s;
+        }
+
+        while (count<1201){
+            if (commonWords[count].equals(password)){ return 1; }
+            count++;
+        }
+
         return -1;
     }
 
