@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Visuals extends Application {
@@ -42,19 +43,57 @@ public class Visuals extends Application {
         Button3.setLayoutX(185);
         Button3.setLayoutY(75);
         root.getChildren().add(Button3);
+        Text advice = new Text("");
+        root.getChildren().add(advice);
 
-        Button submit= new Button("Submit");
-        submit.setLayoutX(250);
-        root.getChildren().add(submit);
-
+        Text bigO = new Text("Brute force is of big O a^n, common password is of big O k (a constant)\nand the secret strat is of big O ");
+        bigO.setLayoutY(300);
+        bigO.setLayoutX(50);
+        root.getChildren().add(bigO);
 
         stage.setScene(new Scene(root, 500, 500));
         stage.show();
         Button1.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent e){
+                bigO.setText("");
                 String toGuess = password.getText();
                 Logic password = new Logic(toGuess);
                 System.out.print(password.bruteForce());
+                if(password.bruteForce()==1){
+                    advice.setText("Your password was too short, try making a longer password.");
+                    advice.setLayoutY(300);
+                    advice.setLayoutX(50);
+
+
+                }
+                else{
+                    advice.setText("Your password could not be guessed, you are unhackable!");
+                    advice.setLayoutY(300);
+                    advice.setLayoutX(50);
+
+                }
+            }
+        });
+
+        Button2.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent e){
+                bigO.setText("");
+                String toGuess = password.getText();
+                Logic password = new Logic(toGuess);
+                System.out.print(password.commonPasswords());
+                if(password.commonPasswords()==1){
+                    advice.setText("Your password was too common, try making a unique password.");
+                    advice.setLayoutY(300);
+                    advice.setLayoutX(50);
+
+
+                }
+                else{
+                    advice.setText("Your password could not be guessed, you are unhackable!");
+                    advice.setLayoutY(300);
+                    advice.setLayoutX(50);
+
+                }
             }
         });
 

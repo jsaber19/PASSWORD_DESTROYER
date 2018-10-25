@@ -23,7 +23,7 @@ public class Logic {
         String attempt = "";
         for (char c : guess) { attempt += c; }
 
-        while(count < 5000){ // until you've reached 5000 attempts
+        while(count < 500000){ // until you've reached 5000 attempts
             if (attempt.equals(password)){
                 count++; // final increment
                 return 1; // found it!
@@ -34,7 +34,7 @@ public class Logic {
             for (char c : guess) { attempt += c; }
             count++; // means the if branch wasn't activated but still need to track each attempt
 
-            System.out.println(attempt);
+
 
 
             /**
