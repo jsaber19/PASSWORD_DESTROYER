@@ -46,7 +46,7 @@ public class Visuals extends Application {
         Text advice = new Text("");
         root.getChildren().add(advice);
 
-        Text bigO = new Text("Brute force is of big O a^n, common password is of big O k (a constant)\nand the secret strat is of big O ");
+        Text bigO = new Text("Brute force is of big O a^n, common password is of big O k (a constant)\nand the secret strat is of big O k");
         bigO.setLayoutY(300);
         bigO.setLayoutX(50);
         root.getChildren().add(bigO);
@@ -83,6 +83,27 @@ public class Visuals extends Application {
                 System.out.print(password.commonPasswords());
                 if(password.commonPasswords()==1){
                     advice.setText("Your password was too common, try making a unique password.");
+                    advice.setLayoutY(300);
+                    advice.setLayoutX(50);
+
+
+                }
+                else{
+                    advice.setText("Your password could not be guessed, you are unhackable!");
+                    advice.setLayoutY(300);
+                    advice.setLayoutX(50);
+
+                }
+            }
+        });
+        Button3.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent e){
+                bigO.setText("");
+                String toGuess = password.getText();
+                Logic password = new Logic(toGuess);
+                System.out.print(password.commonCharacters());
+                if(password.commonCharacters()==1){
+                    advice.setText("Your password was too common even with the replacements, try making a unique password.");
                     advice.setLayoutY(300);
                     advice.setLayoutX(50);
 

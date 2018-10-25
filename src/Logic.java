@@ -26,7 +26,7 @@ public class Logic {
         String attempt = "";
         for (char c : guess) { attempt += c; }
 
-        while(count < 500000){ // until you've reached 5000 attempts
+        while(count < 5000000){ // until you've reached 5000 attempts
             if (attempt.equals(password)){
                 count++; // final increment
                 return 1; // found it!
@@ -114,8 +114,8 @@ public class Logic {
         String[] commonWords = new String[1201];
 
         Path currentRelativePath = Paths.get(""); // gets local path
-        String relPath = currentRelativePath.toAbsolutePath().toString() + "/src/"; // adds the part of the file path at the end
-        File wordsText = new File("file://" + relPath + "1201_words.txt");
+        String relPath = currentRelativePath.toAbsolutePath().toString(); // adds the part of the file path at the end
+        File wordsText = new File("/Users/philipholleb/Desktop/Semester_1/PASSWORD_DESTROYER/1201_words.txt");//TODO fix path
 
         Scanner words = null;
 
