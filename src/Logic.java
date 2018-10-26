@@ -1,4 +1,5 @@
 import java.io.File;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -115,8 +116,8 @@ public class Logic {
 
 
         Path currentRelativePath = Paths.get(""); // gets local path
-        String relPath = currentRelativePath.toAbsolutePath().toString(); // adds the part of the file path at the end
-        File wordsText = new File("/Users/philipholleb/Desktop/Semester_1/PASSWORD_DESTROYER/1201_words.txt");//TODO fix path
+        URL url = getClass().getResource("1201_words.txt");
+        File wordsText = new File(url.getPath());
 
         Scanner words = null;
 
@@ -128,31 +129,38 @@ public class Logic {
         }
 
         words.useDelimiter(",");
-        String r = "";
+        String s = "";
 
         for (int i = 0; i < 1201; i++){
-            String s = words.next();
-            if (s.contains("s")) {
-                r = s.replaceAll("s", "\\$");
+            if (words.hasNext()){
+                s = words.next();
+                //System.out.println(s);
+                if (s.contains("s")) {
+                    s = s.replaceAll("s", "\\$");
+                }
+                if (s.contains("a")){
+                    s = s.replaceAll("a", "@");
+                }
+                if (s.contains("i")){
+                    s = s.replaceAll("i", "1");
+                }
+                if (s.contains("o")){
+                    s = s.replaceAll("o", "0");
+                }
+                if (s.contains("e")){
+                    s = s.replaceAll("e", "3");
+                }
             }
-            if (s.contains("a")){
-               r = s.replaceAll("a", "@");
-            }
-            if (s.contains("i")){
-                r = s.replaceAll("i", "1");
-            }
-            if (s.contains("o")){
-                r = s.replaceAll("o", "0");
-            }
-            if (s.contains("e")){
-                r = s.replaceAll("e", "3");
-            }
-            commonWords[i] = r;
+            commonWords[i] = s;
         }
 
-        while (count<1201){
-            if (commonWords[count].equals(password)){ return 1; }
+        //System.out.println(Arrays.toString(commonWords));
+
+        for(int i = 0; i < 1201; i++){
+            //System.out.println(commonWords[count]);
             count++;
+            if (commonWords[i].equals(password)){ return 1; }
+
         }
 
         return -1;
