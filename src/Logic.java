@@ -113,6 +113,7 @@ public class Logic {
     public int commonCharacters(){
         String[] commonWords = new String[1201];
 
+
         Path currentRelativePath = Paths.get(""); // gets local path
         String relPath = currentRelativePath.toAbsolutePath().toString(); // adds the part of the file path at the end
         File wordsText = new File("/Users/philipholleb/Desktop/Semester_1/PASSWORD_DESTROYER/1201_words.txt");//TODO fix path
@@ -127,15 +128,26 @@ public class Logic {
         }
 
         words.useDelimiter(",");
+        String r = "";
 
         for (int i = 0; i < 1201; i++){
             String s = words.next();
-            if (s.contains("s")){ s.replaceAll("s", "$"); }
-            if (s.contains("a")){ s.replaceAll("a", "@"); }
-            if (s.contains("i")){ s.replaceAll("i", "1"); }
-            if (s.contains("o")){ s.replaceAll("o", "0"); }
-            if (s.contains("e")){ s.replaceAll("e", "3"); }
-            commonWords[i] = s;
+            if (s.contains("s")) {
+                r = s.replaceAll("s", "\\$");
+            }
+            if (s.contains("a")){
+               r = s.replaceAll("a", "@");
+            }
+            if (s.contains("i")){
+                r = s.replaceAll("i", "1");
+            }
+            if (s.contains("o")){
+                r = s.replaceAll("o", "0");
+            }
+            if (s.contains("e")){
+                r = s.replaceAll("e", "3");
+            }
+            commonWords[i] = r;
         }
 
         while (count<1201){

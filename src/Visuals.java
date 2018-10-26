@@ -27,33 +27,34 @@ public class Visuals extends Application {
         space.setSpacing(10);
         space.setLayoutX(10);
         root.getChildren().add(password);
-        root.getChildren().add(space);
+        root.getChildren().add(space);//place to enter password
 
         Button Button1 = new Button("Brute-Force");
         Button1.setLayoutX(50);
         Button1.setLayoutY(150);
-        root.getChildren().add(Button1);
+        root.getChildren().add(Button1);//brute force button
 
         Button Button2 = new Button("Common Password");
         Button2.setLayoutX(325);
         Button2.setLayoutY(150);
-        root.getChildren().add(Button2);
+        root.getChildren().add(Button2);//common password button
 
         Button Button3 = new Button("Secret Strats");
         Button3.setLayoutX(185);
         Button3.setLayoutY(75);
-        root.getChildren().add(Button3);
+        root.getChildren().add(Button3);//common character replacement
+
         Text advice = new Text("");
         root.getChildren().add(advice);
 
         Text bigO = new Text("Brute force is of big O a^n, common password is of big O k (a constant)\nand the secret strat is of big O k");
         bigO.setLayoutY(300);
         bigO.setLayoutX(50);
-        root.getChildren().add(bigO);
+        root.getChildren().add(bigO);//big O analysis
 
         stage.setScene(new Scene(root, 500, 500));
         stage.show();
-        Button1.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        Button1.setOnMouseClicked(new EventHandler<MouseEvent>(){//calls password check for b1
             public void handle(MouseEvent e){
                 bigO.setText("");
                 String toGuess = password.getText();
@@ -75,7 +76,7 @@ public class Visuals extends Application {
             }
         });
 
-        Button2.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        Button2.setOnMouseClicked(new EventHandler<MouseEvent>(){//calls password check for b2
             public void handle(MouseEvent e){
                 bigO.setText("");
                 String toGuess = password.getText();
@@ -96,7 +97,7 @@ public class Visuals extends Application {
                 }
             }
         });
-        Button3.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        Button3.setOnMouseClicked(new EventHandler<MouseEvent>(){//calls password check for b3
             public void handle(MouseEvent e){
                 bigO.setText("");
                 String toGuess = password.getText();
