@@ -61,7 +61,7 @@ public class Visuals extends Application {
                 Logic password = new Logic(toGuess);
                 System.out.print(password.bruteForce());
                 if(password.bruteForce()==1){
-                    advice.setText("Your password was too short, try making a longer password.");
+                    advice.setText("Your password was too short, try making a longer password. \nIt took " + password.getCount() + " guesses.");
                     advice.setLayoutY(300);
                     advice.setLayoutX(50);
 
@@ -83,7 +83,7 @@ public class Visuals extends Application {
                 Logic password = new Logic(toGuess);
                 System.out.print(password.commonPasswords());
                 if(password.commonPasswords()==1){
-                    advice.setText("Your password was too common, try making a unique password.");
+                    advice.setText("Your password was too common, try making a unique password.\nIt took " + password.getCount() + " guesses.");
                     advice.setLayoutY(300);
                     advice.setLayoutX(50);
 
@@ -104,7 +104,7 @@ public class Visuals extends Application {
                 Logic password = new Logic(toGuess);
                 System.out.print(password.commonCharacters());
                 if(password.commonCharacters()==1){
-                    advice.setText("Your password was too common even with the replacements, try making a unique password.");
+                    advice.setText("Your password was too common even with the replacements, \ntry making a unique password. It took " + password.getCount() + " guesses.");
                     advice.setLayoutY(300);
                     advice.setLayoutX(50);
 
