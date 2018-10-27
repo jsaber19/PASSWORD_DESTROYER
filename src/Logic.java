@@ -8,8 +8,11 @@ import java.util.Scanner;
 public class Logic {
     private String password;
     public int count = 0;
+
+    // available characters for use in password
     private char[] characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()".toCharArray(); // https://stackoverflow.com/questions/17575840/better-way-to-generate-array-of-all-letters-in-the-alphabet
 
+    // constructor for logic object to store password and try an algorithm on
     public Logic(String password){
         this.password = password;
         Arrays.sort(characters);
@@ -17,6 +20,7 @@ public class Logic {
 
     // http://prembharticodes.blogspot.com/2011/10/brute-force-algorithm-for-password.html
     public int bruteForce(){
+        count = 0; // reset count
 
         // initialize char array for guesses
         char[] guess = new char[1];
@@ -79,21 +83,27 @@ public class Logic {
     }
 
     public int commonPasswords(){
-        int tracker = 0;
+        count = 0; // reset count
+
+        // array most common passwords
         String[] common = {"123456", "password", "12345678", "qwerty", "12345",
                 "123456789", "letmein", "1234567", "football", "iloveyou", "admin",
                 "welcome", "monkey", "login", "abc123", "starwars", "123123", "dragon",
                 "passw0rd", "master", "hello", "freedom", "whatever", "qazwsx", "trustno1"};
+
+        // tries each password in the list of most common passwords
         for (String s : common){
-            tracker++;
+            count++; // track how many we've tried
             if (s.equals(password)){
-                return 1;
+                return 1; // if found
             }
         }
-        return -1;
+        return -1; // if not found
     }
 
+    // unused random passwords algorithm because it's just brute force
     public int randomPasswords(){
+        count = 0; // reset count
         while (count < 5000){
             int length = (int)(Math.random()*40 + .5);
             String guess = "";
@@ -112,15 +122,19 @@ public class Logic {
     }
 
     public int commonCharacters(){
+        count = 0; // reset count
+
+        // initialize array that will store all the words in 1201_words
         String[] commonWords = new String[1201];
 
-
-        Path currentRelativePath = Paths.get(""); // gets local path
+        // setting up access for 1201_words
         URL url = getClass().getResource("1201_words.txt");
         File wordsText = new File(url.getPath());
 
+        // initialize scanner object
         Scanner words = null;
 
+        // use scanner object to access 1201 words
         try{
             words = new Scanner(wordsText);
         }
@@ -128,13 +142,18 @@ public class Logic {
             System.out.println("error");
         }
 
+        // distinguish words by commas instead of spaces so setting array values works correctly
         words.useDelimiter(",");
-        String s = "";
 
+        String s = ""; // temp string to set up array
+
+        // sets up commonWords array
         for (int i = 0; i < 1201; i++){
+            // accessing each word through scanner
             if (words.hasNext()){
                 s = words.next();
-                //System.out.println(s);
+
+                // replace common characters in the words to make them more like passwords
                 if (s.contains("s")) {
                     s = s.replaceAll("s", "\\$");
                 }
@@ -151,21 +170,22 @@ public class Logic {
                     s = s.replaceAll("e", "3");
                 }
             }
+
+            // set that element of the array equal to the more password-y version of the word
             commonWords[i] = s;
         }
 
-        //System.out.println(Arrays.toString(commonWords));
-
-        for(int i = 0; i < 1201; i++){
-            //System.out.println(commonWords[count]);
+        // try each password in commonWords and see if it matches password
+        for (int i = 0; i < 1201; i++) {
             count++;
-            if (commonWords[i].equals(password)){ return 1; }
+            if (commonWords[i].equals(password)){ return 1; } // found!
 
         }
 
-        return -1;
+        return -1; // couldn't find it
     }
 
+    // getter for count
     public int getCount(){
         return count;
     }
